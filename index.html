@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>Quiz API</title>
+		<link
+			href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/flatly/bootstrap.min.css"
+			type="text/css"
+			rel="stylesheet"
+		/>
+		<link href="style.css" type="text/css" rel="stylesheet" />
+	</head>
+	<body>
+		<header>
+			<nav class="navbar navbar-expand-md">
+				<a class="navbar-brand" href="#">QUIZ PROJECT</a>
+			</nav>
+		</header>
+		<section class="container quiz-topic">
+				<h4>Enter a quiz topic:</h4><br />
+				<select id="quiz-topic">
+					<option value="18">Computer Science</option>
+					<option value="21">Sports</option>
+					<option value="23">History</option>
+					<option value="22">Geography</option>
+				</select> <br /> <br />
+				<button type="submit" value="Select" id="quiz-topic-submit" class="btn-primary">
+					Select
+				</button>
+		</section>
+		<br />
+		<div class="container">
+			<div class="quiz-container" id="quiz-body">
+				<h4 id="quiz-score"></h5>
+				<p id="quiz-question"></p>
+				<div id="quiz-choices"></div>
+			</div>
+			<div class="quiz-options" id="quiz-options">
+				<button id="quiz-submit">Submit</button>
+				<button class="btn-new" id="quiz-next">Next Quiz</button>
+				<button class="btn-reset" id="quiz-reset">Reset Quiz</button>
+			</div>
+		</div>
+		<script src="library.js"></script>
+		<script src="app.js"></script>
+		<script
+			src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+			integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+			integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+			integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+			crossorigin="anonymous"
+		></script>
+		<footer></footer>
+	</body>
+</html>
