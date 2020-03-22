@@ -36,6 +36,7 @@ header {
   flex-flow: column wrap;
   align-items: center;
   justify-content: center;
+  margin-bottom: 10px;
 }
 
 /* Hiding the quiz options */
@@ -85,7 +86,7 @@ header {
 #quiz-choose-answer {
   visibility: hidden;
   min-width: 150px;
-  margin-left: -125px;
+  margin: 0 auto;
   background-color: #33b5e5;
   color: #fff;
   text-align: center;
@@ -93,14 +94,16 @@ header {
   padding: 16px;
   position: fixed;
   z-index: 1;
-  left: 50%;
   bottom: 30px;
+  left: 0;
+  right: 0;
 }
 
 /* Show the snackbar when clicking on a button (class added with JavaScript) */
 #quiz-correct-answer.show,
 #quiz-incorrect-answer.show,
 #quiz-choose-answer.show {
+  margin-top: 30px;
   visibility: visible;
   /* Show the snackbar */
   /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
