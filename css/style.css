@@ -36,7 +36,7 @@ header {
   flex-flow: column wrap;
   align-items: center;
   justify-content: center;
-  margin-bottom: 100px;
+  margin-bottom: 150px;
 }
 
 /* Hiding the quiz options */
@@ -103,7 +103,7 @@ header {
 #quiz-correct-answer.show,
 #quiz-incorrect-answer.show,
 #quiz-choose-answer.show {
-  margin-top: 30px;
+  margin-top: 50px;
   visibility: visible;
   /* Show the snackbar */
   /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
