@@ -80,7 +80,7 @@ function getQuiz() {
 
 	HTTP.get(requestURL)
 		.then(data => showQuiz(data))
-		.catch(err => console.log(err));
+		.catch(err => alert(err));
 }
 
 /**
