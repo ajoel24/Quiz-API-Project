@@ -1,26 +1,49 @@
 "use strict";
 
 /**
- * TODO: Randomize the choice options
- * TODO: Use Bootstrap CSS
+ * TODO: Add loading animations
+ * TODO: Use custom CSS
  */
 
 const HTTP = new HTTPRequest();
 
-let quizBody = document.querySelector("#quiz-body");
-let quizQuestion = document.querySelector("#quiz-question");
-let quizChoicesDiv = document.querySelector("#quiz-choices");
-let quizAnswer = document.querySelector("#quiz-answer");
-let quizScore = document.querySelector("#quiz-score");
+/**
+ * Quiz Body
+ */
+const quizBody = document.querySelector("#quiz-body");
+const quizQuestion = document.querySelector("#quiz-question");
+const quizChoicesDiv = document.querySelector("#quiz-choices");
+const quizAnswer = document.querySelector("#quiz-answer");
+const quizScore = document.querySelector("#quiz-score");
 
-let quizSubmit = document.querySelector("#quiz-submit");
-let quizTopic = document.querySelector("#quiz-topic");
-let quizTopicSubmit = document.querySelector("#quiz-topic-submit");
+/**
+ * Quiz Select Topic
+ * Quiz Submit Answer
+ */
+const quizSubmit = document.querySelector("#quiz-submit");
+const quizTopic = document.querySelector("#quiz-topic");
+const quizTopicSubmit = document.querySelector("#quiz-topic-submit");
 
-let quizNext = document.querySelector("#quiz-next");
-let quizReset = document.querySelector("#quiz-reset");
-let quizOptions = document.querySelector("#quiz-options");
+/**
+ * Quiz controls
+ */
+const quizNext = document.querySelector("#quiz-next");
+const quizReset = document.querySelector("#quiz-reset");
+const quizOptions = document.querySelector("#quiz-options");
 
+/**
+ * Quiz messages
+ */
+const quizCorrectAnswer = document.querySelector("#quiz-correct-answer");
+const quizIncorrectAnswer = document.querySelector("#quiz-incorrect-answer");
+const quizChooseAnswer = document.querySelector("#quiz-choose-answer");
+/**
+ * Quiz loader
+ */
+const quizLoader = document.querySelector(".quiz-loader");
+/**
+ * Quiz Handling Variables
+ */
 let requestURL = null;
 let response = null;
 let responseChoices = [];
@@ -45,12 +68,14 @@ quizNext.addEventListener("click", getQuiz);
  * @returns {null}
  */
 function getQuiz() {
-	let selectedTopic = quizTopic.value;
+	const selectedTopic = quizTopic.value;
 	console.log(selectedTopic);
 
 	quizQuestion.innerHTML = "";
 	quizChoicesDiv.innerHTML = "";
 	choicesHTML = "";
+	showQuizOptions(false);
+	showQuizLoader(true);
 	requestURL = `https://opentdb.com/api.php?amount=1&category=${selectedTopic}&type=multiple`;
 
 	HTTP.get(requestURL)
@@ -67,8 +92,10 @@ function showQuiz(data) {
 	console.log(data);
 	response = data.results[0];
 	setScore(score);
+	showQuizLoader(false);
 	quizQuestion.innerHTML = response.question;
 	createOptions(response, submitAnswer);
+	showQuizOptions(true);
 }
 
 /**
@@ -102,19 +129,25 @@ function createOptions(response, callback) {
  * @param {Event} e The event object
  */
 function submitAnswer(e) {
-	let selectedOption = getSelectedOption();
+	const selectedOption = getSelectedOption();
 	console.log(selectedOption);
 	if (selectedOption != null) {
 		if (selectedOption == response.correct_answer) {
-			alert("Correct answer!");
-			score++;
-			setScore(score);
+			setScore(score++);
+			displayMessage("correct");
+			// alert("Correct answer!");
+			// score++;
 			getQuiz();
 		} else {
-			alert("Incorrect answer!");
+			setScore(score--);
+			displayMessage("incorrect");
+			// alert("Incorrect answer!");
+			// score--;
+			getQuiz();
 		}
 	} else {
-		alert("Please choose an option");
+		displayMessage("choose");
+		//alert("Please choose an option");
 	}
 	e.preventDefault();
 }
@@ -124,7 +157,7 @@ function submitAnswer(e) {
  * @returns {string} selectedQuizChoice
  */
 function getSelectedOption() {
-	let quizChoices = document.getElementsByName("choice");
+	const quizChoices = document.getElementsByName("choice");
 	let selectedQuizChoice = null;
 	for (let i = 0; i < quizChoices.length; i++) {
 		if (quizChoices[i].checked) {
@@ -132,7 +165,7 @@ function getSelectedOption() {
 			break;
 		}
 	}
-	console.log(typeof selectedQuizChoice);
+	// console.log(typeof selectedQuizChoice);
 	return selectedQuizChoice;
 }
 
@@ -145,9 +178,43 @@ function resetQuiz() {
 	choicesHTML = "";
 	score = 0;
 	setScore(score);
+	showQuizOptions(false);
 }
 
 function setScore(score) {
 	quizScore.innerHTML = "";
 	quizScore.innerHTML = `Your Score : ${score}`;
+}
+
+function displayMessage(message) {
+	switch (message) {
+		case "correct":
+			displayMessageDelay(quizCorrectAnswer);
+			break;
+
+		case "incorrect":
+			displayMessageDelay(quizIncorrectAnswer);
+			break;
+
+		case "choose":
+			displayMessageDelay(quizChooseAnswer);
+			break;
+	}
+}
+
+function displayMessageDelay(messageDiv) {
+	messageDiv.className = "show";
+	setTimeout(() => {
+		messageDiv.className = messageDiv.className.replace("show", "");
+	}, 2000);
+}
+
+function showQuizOptions(flag) {
+	if (flag) quizOptions.className = "show";
+	else quizOptions.className = quizOptions.className.replace("show", "");
+}
+
+function showQuizLoader(flag) {
+	if (flag) quizLoader.classList.add("show");
+	else quizLoader.classList.remove("show");
 }

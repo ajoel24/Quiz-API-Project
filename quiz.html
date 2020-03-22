@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>QUIZ API</title>
+		<link href="css/style.css" type="text/css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/loader.css" rel="stylesheet" />
+	</head>
+	<body>
+		<header>
+			<h3>QUIZ PROJECT</h3>
+			<h5>Ready to take the challenge?</h5>
+		</header>
+		<main class="container">
+			<section class="quiz-topic-container">
+				<h4>Enter a quiz topic:</h4>
+				<br />
+				<select id="quiz-topic">
+					<option value="18">Computer Science</option>
+					<option value="21">Sports</option>
+					<option value="23">History</option>
+					<option value="22">Geography</option>
+				</select>
+				<br />
+				<br />
+				<button
+					type="submit"
+					value="Select"
+					id="quiz-topic-submit"
+					class="btn-primary"
+				>
+					Select
+				</button>
+			</section>
+			<br />
+			<section class="quiz-handler-container">
+				<div class="quiz-container" id="quiz-body">
+					<h4 id="quiz-score"></h4>
+					<p id="quiz-question"></p>
+          <div class="quiz-loader">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+					<div id="quiz-choices"></div>
+				</div>
+				<br />
+				<br />
+				<div id="quiz-options">
+					<button id="quiz-submit">Submit</button>
+					<button class="btn-new" id="quiz-next">Next Quiz</button>
+					<button class="btn-reset" id="quiz-reset">Reset Quiz</button>
+				</div>
+			</section>
+			<section class="quiz-response-messages">
+				<div id="quiz-correct-answer">Correct answer!</div>
+				<div id="quiz-incorrect-answer">Incorrect answer!</div>
+				<div id="quiz-choose-answer">Select an option!</div>
+			</section>
+		</main>
+		<!-- JavaScript files -->
+		<script src="js/library.js"></script>
+		<script src="js/app.js"></script>
+	</body>
+</html>
