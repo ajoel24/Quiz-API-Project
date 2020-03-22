@@ -69,7 +69,7 @@ quizNext.addEventListener("click", getQuiz);
  */
 function getQuiz() {
 	const selectedTopic = quizTopic.value;
-	console.log(selectedTopic);
+	// console.log(selectedTopic);
 
 	quizQuestion.innerHTML = "";
 	quizChoicesDiv.innerHTML = "";
@@ -89,7 +89,7 @@ function getQuiz() {
  * @returns {void}
  */
 function showQuiz(data) {
-	console.log(data);
+	// console.log(data);
 	response = data.results[0];
 	setScore(score);
 	showQuizLoader(false);
@@ -108,9 +108,9 @@ function createOptions(response, callback) {
 	responseChoices.push(response.incorrect_answers[0]);
 	responseChoices.push(response.incorrect_answers[1]);
 	responseChoices.push(response.incorrect_answers[2]);
-	console.log(responseChoices);
+	// console.log(responseChoices);
 	responseChoices = responseChoices.sort(() => Math.random() - 0.5);
-	console.log(responseChoices);
+	// console.log(responseChoices);
 
 	for (let i = 0; i < responseChoices.length; i++) {
 		choicesHTML += `
@@ -130,7 +130,7 @@ function createOptions(response, callback) {
  */
 function submitAnswer(e) {
 	const selectedOption = getSelectedOption();
-	console.log(selectedOption);
+	// console.log(selectedOption);
 	if (selectedOption != null) {
 		if (selectedOption == response.correct_answer) {
 			setScore(score++);
