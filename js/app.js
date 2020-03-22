@@ -51,6 +51,8 @@ let response = null;
 let responseChoices = [];
 let choicesHTML = "";
 let score = 0;
+let highscoreDataURL =
+	"https://raw.githubusercontent.com/Andrew2432/Quiz-API-Project/master/data/data.json";
 
 // Display wishes to user :)
 let username = localStorage.getItem("username");
@@ -60,7 +62,8 @@ quizUsernameDisplay.innerHTML = `Good luck ${username}!`;
  * @method getQuiz Creates the quiz
  * @method submitAnswer Validates the answer
  * @method resetQuiz Resets the quiz window
- * @method exitQuiz Stops the quiz and displays high score
+ * @method exitQuiz Stops the quiz
+ * @method getHighScores Fetches the scores
  */
 
 quizTopicSubmit.addEventListener("click", getQuiz);
@@ -68,7 +71,7 @@ quizSubmit.addEventListener("click", submitAnswer);
 quizReset.addEventListener("click", resetQuiz);
 quizNext.addEventListener("click", getQuiz);
 quizExit.addEventListener("click", exitQuiz);
-quizHighScore.addEventListener("click", showHighScores);
+quizHighScore.addEventListener("click", getHighScores);
 
 /**
  * *Creates a HTTP GET request to the OpenTriviaDB API
@@ -241,7 +244,28 @@ function exitQuiz(e) {
  * @param {Event} e The event object
  */
 
-function showHighScores(e) {
-	let highscoreDataURL = ""
+function getHighScores(e) {
+	HTTP.get(highscoreDataURL)
+		.then(data => showHighScores(data))
+		.catch(err => console.log(err));
 	e.preventDefault();
+}
+
+function showHighScores(response) {
+	// let highscoreHTML = `
+	// 	<table>
+	// 		<tr>
+	// 			<th>Username</th>
+	// 			<th>Score</th>
+	// 		</tr>
+	// `;
+	// response.forEach(data, index => {
+	// 	highscoreHTML += `
+	// 		<tr>
+	// 			<td>${data}
+	// 	`;
+	// });
+	console.log(response[0]);
+	console.log(response[0].name);
+	console.log(response[0].score);
 }
