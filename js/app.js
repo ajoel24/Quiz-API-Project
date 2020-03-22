@@ -1,8 +1,7 @@
 "use strict";
 
 /**
- * TODO: Add loading animations
- * TODO: Use custom CSS
+ * TODO: Manage users
  */
 
 const HTTP = new HTTPRequest();
@@ -10,6 +9,7 @@ const HTTP = new HTTPRequest();
 /**
  * Quiz Body
  */
+const quizUsernameDisplay = document.querySelector("#quiz-username-display");
 const quizBody = document.querySelector("#quiz-body");
 const quizQuestion = document.querySelector("#quiz-question");
 const quizChoicesDiv = document.querySelector("#quiz-choices");
@@ -23,6 +23,7 @@ const quizScore = document.querySelector("#quiz-score");
 const quizSubmit = document.querySelector("#quiz-submit");
 const quizTopic = document.querySelector("#quiz-topic");
 const quizTopicSubmit = document.querySelector("#quiz-topic-submit");
+const quizHighScore = document.querySelector("#quiz-highscore");
 
 /**
  * Quiz controls
@@ -30,6 +31,7 @@ const quizTopicSubmit = document.querySelector("#quiz-topic-submit");
 const quizNext = document.querySelector("#quiz-next");
 const quizReset = document.querySelector("#quiz-reset");
 const quizOptions = document.querySelector("#quiz-options");
+const quizExit = document.querySelector("#btn-quit");
 
 /**
  * Quiz messages
@@ -50,16 +52,23 @@ let responseChoices = [];
 let choicesHTML = "";
 let score = 0;
 
+// Display wishes to user :)
+let username = localStorage.getItem("username");
+quizUsernameDisplay.innerHTML = `Good luck ${username}!`;
 /**
  * * Event Listeners
  * @method getQuiz Creates the quiz
  * @method submitAnswer Validates the answer
  * @method resetQuiz Resets the quiz window
+ * @method exitQuiz Stops the quiz and displays high score
  */
+
 quizTopicSubmit.addEventListener("click", getQuiz);
 quizSubmit.addEventListener("click", submitAnswer);
 quizReset.addEventListener("click", resetQuiz);
 quizNext.addEventListener("click", getQuiz);
+quizExit.addEventListener("click", exitQuiz);
+quizHighScore.addEventListener("click", showHighScores);
 
 /**
  * *Creates a HTTP GET request to the OpenTriviaDB API
@@ -130,24 +139,18 @@ function createOptions(response, callback) {
  */
 function submitAnswer(e) {
 	const selectedOption = getSelectedOption();
-	// console.log(selectedOption);
 	if (selectedOption != null) {
 		if (selectedOption == response.correct_answer) {
 			setScore(score++);
 			displayMessage("correct");
-			// alert("Correct answer!");
-			// score++;
 			getQuiz();
 		} else {
 			setScore(score--);
 			displayMessage("incorrect");
-			// alert("Incorrect answer!");
-			// score--;
 			getQuiz();
 		}
 	} else {
 		displayMessage("choose");
-		//alert("Please choose an option");
 	}
 	e.preventDefault();
 }
@@ -217,4 +220,28 @@ function showQuizOptions(flag) {
 function showQuizLoader(flag) {
 	if (flag) quizLoader.classList.add("show");
 	else quizLoader.classList.remove("show");
+}
+
+function exitQuiz(e) {
+	resetQuiz();
+	updateHighScores();
+	// let userResponse = confirm("Do you really want to quit?");
+	// if (userResponse) {
+	// 	showQuizOptions(false);
+	// 	quizChoicesDiv.innerHTML = "";
+	// 	choicesHTML = "";
+
+	// }
+	e.preventDefault();
+}
+
+/**
+ * Get the high score
+ * Then show it
+ * @param {Event} e The event object
+ */
+
+function showHighScores(e) {
+	let highscoreDataURL = ""
+	e.preventDefault();
 }
