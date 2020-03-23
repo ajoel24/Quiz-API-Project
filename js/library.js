@@ -36,9 +36,24 @@ class HTTPRequest {
 
 	put(url, data) {
 		return new Promise((resolve, reject) => {
-			const putRequest = new ajaxRequest();
-			putRequest.open("PUT", url, true);
-			// putRequest.setRequestHeader("Content-type:")
+			fetch(url, {
+				method: "POST",
+				headers: {
+					"Content-type": "application/vnd.github.v3+json",
+					Authorization: "token bf707020d9f03c3990257ef2a3b9185d27e40013"
+				},
+				body: {
+					message: "Updated high score new",
+					committer: {
+						name: "Andrew2432",
+						email: "drew.devops@gmail.com"
+					},
+					content: data
+				}
+			})
+				.then(res => res.json())
+				.then(data => resolve(data))
+				.catch(err => reject(err));
 		});
 	}
 }
