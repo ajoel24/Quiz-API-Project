@@ -4,11 +4,11 @@ class HTTPRequest {
 	get(url) {
 		return new Promise((resolve, reject) => {
 			fetch(url, {
-        method: "GET"
-      })
-      .then(res => res.json())
-      .then(data => resolve(data))
-      .catch(err => reject(err))
+				method: "GET"
+			})
+				.then(res => res.json())
+				.then(data => resolve(data))
+				.catch(err => reject(err));
 		});
 	}
 
@@ -33,6 +33,14 @@ class HTTPRequest {
 			postRequest.send(JSON.stringify(data));
 		});
 	}
+
+	put(url, data) {
+		return new Promise((resolve, reject) => {
+			const putRequest = new ajaxRequest();
+			putRequest.open("PUT", url, true);
+			// putRequest.setRequestHeader("Content-type:")
+		});
+	}
 }
 
 function ajaxRequest() {
@@ -50,5 +58,5 @@ function ajaxRequest() {
 			}
 		}
 	}
-  return request;
+	return request;
 }

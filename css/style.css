@@ -21,56 +21,6 @@ header {
   background-color: #4A00E0;
 }
 
-/* Main Container */
-.main-container {
-  margin: 2rem auto;
-  display: flex;
-  flex-flow: column wrap;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Quiz Description */
-.quiz-description,
-.quiz-rules {
-  margin: 1rem auto;
-  display: flex;
-  flex-flow: column wrap;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Quiz Call To Action */
-.quiz-start {
-  margin: 0 auto;
-  display: flex;
-  flex-flow: column wrap;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 2rem;
-}
-
-.quiz-start>input {
-  height: 30px;
-  font-size: 1rem;
-  font-weight: bold;
-  border-radius: 1rem;
-  border: 2px solid #000;
-  outline: none;
-  padding-left: 10px;
-}
-
-.quiz-start>button {
-  height: 3rem;
-  border-radius: 1rem;
-  border: 1px solid #fff;
-  outline: none;
-  background-color: #00C851;
-  color: #fff;
-  font-size: 1.2rem;
-  min-width: 50%;
-}
-
 /* Quiz select topic container */
 .quiz-topic-container {
   margin: 0 auto;
@@ -198,8 +148,7 @@ header {
   transform: translate(-50%, 0px);
 }
 
-#quiz-choose-answer,
-#quiz-enter-username {
+#quiz-choose-answer {
   visibility: hidden;
   min-width: 150px;
   background-color: #33b5e5;
@@ -218,8 +167,7 @@ header {
 /* Show the snackbar when clicking on a button (class added with JavaScript) */
 #quiz-correct-answer.show,
 #quiz-incorrect-answer.show,
-#quiz-choose-answer.show,
-#quiz-enter-username.show {
+#quiz-choose-answer.show {
   margin-top: 50px;
   visibility: visible;
   /* Show the snackbar */
