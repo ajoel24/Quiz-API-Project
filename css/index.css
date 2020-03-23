@@ -43,10 +43,9 @@ header {
 /* Quiz Call To Action */
 .quiz-start {
   margin: 0 auto;
-  display: flex;
-  flex-flow: column wrap;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  grid-template-rows: repeat(1fr, 3);
+  row-gap: 1rem;
   margin-bottom: 2rem;
 }
 
