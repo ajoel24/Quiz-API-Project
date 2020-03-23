@@ -38,6 +38,7 @@ header {
   flex-flow: column wrap;
   align-items: center;
   justify-content: center;
+  max-width: 80%;
 }
 
 /* Quiz Call To Action */
@@ -47,7 +48,7 @@ header {
   grid-template-rows: repeat(1fr, 3);
   row-gap: 1rem;
   margin-bottom: 2rem;
-  max-width: 80%;
+  max-width: 60%;
 }
 
 .quiz-start>input {
