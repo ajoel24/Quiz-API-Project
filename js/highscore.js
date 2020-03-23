@@ -17,9 +17,11 @@ const username = localStorage.getItem("username");
 quizNewGame.addEventListener("click", newQuiz);
 // quizHighScore.addEventListener("click", getHighScores);
 
-quizDisplayScore.innerHTML = `Your score: ${localStorage.getItem(
-	"score"
-)}. <br /> Good work! <br />`;
+quizDisplayScore.innerHTML = `
+		Thanks for playing ${localStorage.getItem("username")}<br />
+		Your score: ${localStorage.getItem("score")}. <br /> 
+		Good work! <br />
+	`;
 
 let data = [
 	{
@@ -51,15 +53,15 @@ function newQuiz() {
 // }
 
 // function updateHighScore(data) {
-	// data = data.sort(comparator("score"));
-	// if(data[0].score < score) {
-	//   data.add({
-	//     "name": username,
-	//     "score": score
-	//   });
-	//   data = data.sort(comparator("score"));
+// data = data.sort(comparator("score"));
+// if(data[0].score < score) {
+//   data.add({
+//     "name": username,
+//     "score": score
+//   });
+//   data = data.sort(comparator("score"));
 
-	// }
+// }
 // 	console.log(data);
 // 	return data;
 // }
