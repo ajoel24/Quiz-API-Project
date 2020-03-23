@@ -47,6 +47,7 @@ header {
   grid-template-rows: repeat(1fr, 3);
   row-gap: 1rem;
   margin-bottom: 2rem;
+  max-width: 80%;
 }
 
 .quiz-start>input {
